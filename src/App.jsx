@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AddData />} />
         <Route path="/insights" element={<Insights />} />
-        <Route path="/*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
     </UserProvider>
