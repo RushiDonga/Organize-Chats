@@ -27,6 +27,7 @@ export function UserProvider({ children }) {
         ...userData
     }
 
+    console.log("Data with Date: ", updatedData);
     setUserData(updatedData);
 
     localStorage.setItem(import.meta.env.VITE_COOKIE_KEY, JSON.stringify(updatedData));

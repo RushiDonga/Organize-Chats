@@ -24,7 +24,7 @@ export default function AddData() {
   function getFile() {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = ".csv,.xlsx,.json,.zip";
+    input.accept = ".zip";
     input.onchange = async (event) => {
       const file = event.target.files[0];
       if (file) {

@@ -21,7 +21,9 @@ export default function Insights() {
   const [category, setCategory] = useState("All Categories");
   const { getUserData } = useContext(UserContext);
 
-  useEffect(() => {}, [getUserData]);
+  useEffect(() => {
+    console.log(getUserData)
+  }, [getUserData]);
 
   return (
     <>
