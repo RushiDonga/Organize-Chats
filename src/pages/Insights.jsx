@@ -15,7 +15,8 @@ const categories = [
   "Reminders",
   "Decisions",
   "Disagreements",
-  "Todos"
+  "Todos",
+  "Maps",
 ];
 
 export default function Insights() {
@@ -64,11 +65,23 @@ export default function Insights() {
               {Object.entries(card).map(([cardType, cardData]) => {
                 if (category !== "All Categories") {
                   if (cardType === category) {
-                    return Object.entries(cardData).map(([key, value]) => (
+                    if (cardData.length > 0) {
+                      return Object.entries(cardData).map(([key, value]) => (
                       <div key={key} className="break-inside-avoid">
                         <RenderCards cardType={cardType} cardData={value} />
                       </div>
                     ));
+                    }
+
+                    return (
+                        <div className="text-gray-500 text-center col-span-full w-full">
+                          No data available for{" "}
+                          <span className="font-semibold">{category}</span> on
+                          this date.
+                        </div>
+                      );
+
+                    
                   }
                 } else {
                   if (cardType === "Summaries") {

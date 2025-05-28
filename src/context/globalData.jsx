@@ -23,8 +23,8 @@ export function UserProvider({ children }) {
     const currentDate = getCurrentDate();
 
     const updatedData = {
-        [currentDate]: data,
-        ...userData
+        ...userData,
+        [currentDate]: data
     }
 
     console.log("Data with Date: ", updatedData);

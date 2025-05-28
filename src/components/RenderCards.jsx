@@ -3,6 +3,7 @@ import DecisionCard from "./DecisionCard";
 import DisagreementCard from "./DisagreementCard";
 import EventCard from "./EventCard";
 import JokesCard from "./JokesCard";
+import MapCard from "./MapCard";
 import QuestionCard from "./QuestionCard";
 import ReminderCard from "./ReminderCard";
 import TodoCard from "./TodoCard";
@@ -37,6 +38,10 @@ export default function RenderCards({ cardType, cardData }) {
       return (
         <TodoCard bgColor={getTypeColor(cardType)} cardData={cardData}/>
       )
+    case "Maps":
+      return (
+        <MapCard bgColor={getTypeColor(cardType)} cardData={cardData}/>
+      )
     default:
       console.log(cardType);
   }
@@ -62,8 +67,11 @@ function getTypeColor(type) {
       return "#A78BFA"; // violet
     case "Todos":
       return "#38BDF8"; // sky blue
+    case "Maps":
+      return "#4ADE80"; // emerald green
     default:
       return "#E5E7EB"; // gray
   }
 }
+
 

@@ -28,7 +28,7 @@ export default function Hero() {
           <div className="bg-purple-100 text-purple-900 px-4 py-2 rounded-xl flex items-center space-x-2 w-fit shadow-sm">
             <RocketIcon className="w-4 h-4" />
             <p className="text-sm font-medium">
-              Major update coming soon: Maps & To-dos integration launching tomorrow! 🚀
+              Big Update! 🚀 Added Maps and Todos, and now users can download their data anytime!
             </p>
           </div>
         </div>
