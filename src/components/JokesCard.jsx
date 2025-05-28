@@ -1,6 +1,6 @@
 export default function JokesCard({ bgColor, cardData }) {
   return (
-    <div className="bg-white p-5 rounded-xl shadow border border-gray-300 hover:shadow-lg transition-shadow duration-300 h-[300px] flex flex-col justify-between">
+    <div className="bg-white p-5 rounded-xl shadow border border-gray-300 hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between">
       <div>
         <span
           className="inline-block px-3 py-1 text-sm font-medium rounded-full mb-2 text-white"

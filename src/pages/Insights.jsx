@@ -15,6 +15,7 @@ const categories = [
   "Reminders",
   "Decisions",
   "Disagreements",
+  "Todos"
 ];
 
 export default function Insights() {
@@ -22,7 +23,7 @@ export default function Insights() {
   const { getUserData } = useContext(UserContext);
 
   useEffect(() => {
-    console.log(getUserData)
+    console.log(getUserData);
   }, [getUserData]);
 
   return (
@@ -54,35 +55,34 @@ export default function Insights() {
         </div>
 
         {Object.entries(getUserData).map(([date, card]) => (
-          <div key={date} className="mb-4">
-            <h1 className="text-sm font-bold text-gray-800 pb-1 capitalize">
+          <div key={date} className="mb-10">
+            <h1 className="text-lg font-semibold text-gray-800 pb-2 capitalize">
               {date}
             </h1>
 
-            {/* Move grid container here */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
               {Object.entries(card).map(([cardType, cardData]) => {
                 if (category !== "All Categories") {
-                  if (cardType == category) {
+                  if (cardType === category) {
                     return Object.entries(cardData).map(([key, value]) => (
-                      <RenderCards
-                        key={key}
-                        cardType={cardType}
-                        cardData={value}
-                      />
+                      <div key={key} className="break-inside-avoid">
+                        <RenderCards cardType={cardType} cardData={value} />
+                      </div>
                     ));
                   }
                 } else {
                   if (cardType === "Summaries") {
-                    return <SummaryCard key={cardType} cardData={cardData} />;
+                    return (
+                      <div key={cardType} className="break-inside-avoid">
+                        <SummaryCard cardData={cardData} />
+                      </div>
+                    );
                   }
 
                   return Object.entries(cardData).map(([key, value]) => (
-                    <RenderCards
-                      key={key}
-                      cardType={cardType}
-                      cardData={value}
-                    />
+                    <div key={key} className="break-inside-avoid">
+                      <RenderCards cardType={cardType} cardData={value} />
+                    </div>
                   ));
                 }
               })}

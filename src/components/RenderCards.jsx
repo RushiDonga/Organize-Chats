@@ -5,6 +5,7 @@ import EventCard from "./EventCard";
 import JokesCard from "./JokesCard";
 import QuestionCard from "./QuestionCard";
 import ReminderCard from "./ReminderCard";
+import TodoCard from "./TodoCard";
 
 export default function RenderCards({ cardType, cardData }) {
   switch (cardType) {
@@ -32,6 +33,10 @@ export default function RenderCards({ cardType, cardData }) {
       return (
         <DisagreementCard bgColor={getTypeColor(cardType)} cardData={cardData} />
       );
+    case "Todos":
+      return (
+        <TodoCard bgColor={getTypeColor(cardType)} cardData={cardData}/>
+      )
     default:
       console.log(cardType);
   }
@@ -55,11 +60,10 @@ function getTypeColor(type) {
       return "#F97316"; // orange
     case "Disagreements":
       return "#A78BFA"; // violet
-    case "TopicClusters":
-      return "#A78BFB";
-    case "Humor and Banter":
-      return "#A78BFC";
+    case "Todos":
+      return "#38BDF8"; // sky blue
     default:
       return "#E5E7EB"; // gray
   }
 }
+

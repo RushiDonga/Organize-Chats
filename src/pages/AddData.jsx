@@ -7,14 +7,12 @@ import { Link, useNavigate } from "react-router-dom";
 export default function AddData() {
   const [dragActive, setDragActive] = useState(false);
   const { isLoading, setIsLoading, updateUserData } = useContext(UserContext);
-
   const navigate = useNavigate();
 
   function resReceived(res) {
     if (!res) {
       console.log("An Error Exists");
-    }else{
-
+    } else {
       updateUserData(res);
       setIsLoading(false);
       navigate("/insights");
@@ -48,70 +46,71 @@ export default function AddData() {
   async function handleDrop(e) {
     e.preventDefault();
     setDragActive(false);
-
     const file = e.dataTransfer.files[0];
     if (file && file.name.toLowerCase().endsWith(".zip")) {
       setIsLoading(true);
       const res = await handleApiCalls(file);
-      if (res) {
-        setIsLoading(false);
-        resReceived(res);
-      }
+      resReceived(res);
     } else {
       alert("Only .zip files are allowed.");
     }
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="relative min-h-screen bg-gray-50 flex items-center justify-center px-4">
       {isLoading && (
         <div className="absolute inset-0 z-50 bg-white/80 flex items-center justify-center">
           <LoadingScreen />
         </div>
       )}
 
-      <div className="bg-white rounded-2xl drop-shadow-lg p-8 w-full max-w-md text-center z-0">
-        <h2 className="text-xl font-semibold text-gray-800 mb-6">
-          📤 Upload Your Data
+      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md text-center relative z-10">
+        <h2 className="text-2xl font-semibold text-blue-600 mb-6">
+          📤 Upload Your Exported WhatsApp Chat
         </h2>
 
+        {/* Drag & Drop Section */}
         <div
-          className={`border-2 border-dashed rounded-xl p-6 mb-4 transition ${
-            dragActive ? "border-blue-500 bg-blue-50" : "border-blue-300"
+          className={`border-2 border-dashed rounded-xl p-6 mb-6 transition-all duration-200 ${
+            dragActive
+              ? "border-blue-500 bg-blue-50"
+              : "border-blue-300 bg-white"
           }`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
         >
-          <p className="text-gray-500 mb-2">Drag & Drop files here</p>
-
+          <p className="text-gray-500 mb-3">Drag & drop your .zip file here</p>
           <button
             onClick={getFile}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="bg-gradient-to-r from-blue-500 to-teal-400 text-white px-5 py-2 rounded-lg font-medium shadow hover:brightness-110 transition"
           >
             Browse Files
           </button>
-
           <p className="text-xs text-gray-400 mt-2">
-            Accepted format: .csv, .xlsx, .json, .zip (max 10MB)
+            Accepted format: .zip (max 10MB)
           </p>
         </div>
 
+        {/* Divider */}
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
+            <div className="w-full border-t border-gray-300" />
           </div>
-          <div className="relative bg-white px-4 text-gray-400 text-sm">OR</div>
+          <div className="relative bg-white px-4 text-sm text-gray-400">
+            OR
+          </div>
         </div>
 
-        <Link to='/insights'>
-          <button className="w-full bg-gray-100 border border-gray-300 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition mb-6">
-          View Insights
-        </button>
+        {/* View Insights Button */}
+        <Link to="/insights">
+          <button className="w-full border border-blue-500 text-blue-600 py-2 rounded-lg font-medium hover:bg-blue-50 transition mb-6">
+            View Insights
+          </button>
         </Link>
 
         <p className="text-xs text-gray-400">
-          🔒 All uploads are secure and private. Need help?{" "}
+          🔒 Your data is secure and processed locally.{" "}
           <a href="#" className="text-blue-500 underline">
             Learn more
           </a>
