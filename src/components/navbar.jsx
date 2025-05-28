@@ -5,7 +5,7 @@ export default function NavBar() {
     <nav className="sticky top-0 z-50 flex items-center justify-between bg-gray-800 text-white shadow px-10 py-4">
       <h1 className="text-lg font-semibold">Data Organizer</h1>
       <div className="flex gap-2">
-        <Link to='/'>
+        <Link to='/add-data'>
           <button className="bg-gray-700 px-3 py-1 text-sm rounded-md hover:bg-gray-600 transition">
           Add Data
         </button>
