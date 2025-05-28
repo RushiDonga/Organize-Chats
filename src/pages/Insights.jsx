@@ -55,7 +55,7 @@ export default function Insights() {
           ))}
         </div>
 
-        {Object.entries(getUserData).map(([date, card]) => (
+        {Object.entries(getUserData).reverse().map(([date, card]) => (
           <div key={date} className="mb-10">
             <h1 className="text-lg font-semibold text-gray-800 pb-2 capitalize">
               {date}
