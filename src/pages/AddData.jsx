@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../context/globalData";
 import LoadingScreen from "./Loading";
-import handleApiCalls from "../utils/handleApiCalls";
+import {handleApiCalls} from "../utils/handleApiCalls";
 import { Link, useNavigate } from "react-router-dom";
+import { sampleChats } from "../data/sampleMessages";
+import { handleSampleData } from "../utils/handleApiCalls";
 
 export default function AddData() {
   const [dragActive, setDragActive] = useState(false);
@@ -17,6 +19,12 @@ export default function AddData() {
       setIsLoading(false);
       navigate("/insights");
     }
+  }
+
+  async function handlePlayWithSampleData() {
+    setIsLoading(true);
+    const res = await handleSampleData(sampleChats);
+    resReceived(res);
   }
 
   function getFile() {
@@ -91,6 +99,13 @@ export default function AddData() {
             Accepted format: .zip (max 10MB)
           </p>
         </div>
+
+        <button
+            onClick={handlePlayWithSampleData}
+            className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white px-5 py-2 rounded-lg font-medium shadow hover:brightness-110 transition"
+          >
+            Play with Sample Data
+          </button>
 
         {/* Divider */}
         <div className="relative my-6">
